@@ -18,28 +18,38 @@ window.onload = function() {
         path.strokeColor = new RgbColor(color.red, color.green, color.blue, color.alpha);
         path.add(event.point);
         
-        var sound1 = new Howl({
-      	  urls: ['/sounds/Efeito 1.mp3'],
+        var sound0 = new Howl({
+      	  urls: ['/sounds/Bass 2.mp3'],
       	  loop: true
       	  
       	  
-      	}).play();
+      	});
         
         var sound1 = new Howl({
         	  urls: ['/sounds/Voz 1.mp3'],
         	  loop: true
         	  
         	  
-        	}).play();
+        	});
         
-        var sound1 = new Howl({
+        var sound2 = new Howl({
         	  urls: ['/sounds/Bass 1.mp3'],
         	  loop: true
         	  
         	  
-        	}).play();
+        	});
+        var sound3 = new Howl({
+      	  urls: ['/sounds/Efeito 1.mp3'],
+      	  loop: true
+      	  
+      	  
+      	});
         
-      
+       var x=Math.round(Math.random()*3)
+        	if (x==0) x=sound0.play();
+        	else if (x==1) x=sound1.play();
+        	else if (x==2) x=sound2.play();
+        	else x=sound3.play();
     }
 
     cloud.onMouseDrag = function(event){
