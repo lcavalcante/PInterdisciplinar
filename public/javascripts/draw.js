@@ -33,8 +33,8 @@ window.onload = function() {
         };
     }
 
-    circleTump.maxDistance = 50;
-    circleTump.minDistance = 20;
+//    circleTump.maxDistance = 50;
+ //   circleTump.minDistance = 20;
 
     circleTump = new Tool();
     circleTump.onMouseDrag = function(event) {
