@@ -2,27 +2,38 @@ extends layout
 block content
     div(class='site-wrapper')
         div(class='site-wraper-inner')
-            div(class='masterhead clearfix')
-                div(class='inner')
-                    nav
-                        ul(class='nav masterhead-nav')
-                            li(class='active')
-                                a(href='#') Draw 
-                                a(href='#') Sobre
+            div(class='cover-container')
+                div(class='masterhead clearfix')
+                    div(class='inner')
+                        h3(class = 'masthead-brand') GrindHouse
+                        nav
+                            ul(class='nav masterhead-nav')
+                                li(class='active')
+                                    a(href='#') Draw
+                                li
+                                    a(href='#') Sobre
                             
             
-            div(class='inner cover')
-                h1(class ='cover-heading') Clique aqui para desenhar.
-                p(class= 'lead') Desenhe e produza sons ao mesmo tempo, cada clique produz uma melodia diferente, GO CRAZY!! ^-^.                
-                p(class = 'lead')
+                div(class='inner cover')
+                    h1(class ='cover-heading') Clique aqui para desenhar.
+                    p(class= 'lead') GO CRAZY!! ^-^.                 
+                        ul  
+                            li    
+                                a(href="#", onclick="tool1.activate();") tool1   
+                            li
+                                a(href="#", onclick="tool2.activate();") tool2
                 canvas(id="draw", resize="true")
-
-            div(class='mastfoot')
-                div(class='inner')
-                    p Não é o paint
+                div(id = "picker")
+                    script(type="text/javascript", src="javascripts/draw2.js", canvas = "draw")    
+                div(class='mastfoot')
+                    div(class='inner')
+                        p Não é o paint
+   
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
     script(src="/javascripts/bootstrap.min.js")
-    script(src="/javascripts/docs.min.js")
-    script(type="text/javascript", src="javascripts/draw.js")
+        //script(src="/javascripts/docs.min.js")
+    script(type="text/javascript", src="javascripts/draw2.js", canvas = "draw")
+    //script(type="text/javascript", src="javascripts/draw.js")
+    
 
 

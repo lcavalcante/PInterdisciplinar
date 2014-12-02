@@ -2,6 +2,8 @@ doctype html
 html
     head
         meta(name='viewport', content='width=device-width, initial-scale=1')
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
 
 
         title= GrindHouse
@@ -10,8 +12,13 @@ html
         // Bootstap
         link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
         link(rel='stylesheet', href='/stylesheets/cover.css')
+        link(rel='stylesheet', href='/stylesheets/colpick.css')
+
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
+
 
         script(src="/javascripts/paper.js")
         script(src="/javascripts/howler.js")
+        script(src="/javascripts/colpick.js")
   body
     block content

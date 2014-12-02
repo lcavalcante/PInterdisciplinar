@@ -4,55 +4,31 @@ window.onload = function() {
 
 
     paper.setup('draw');
-
-
-
+    
+    var tool = new Tool();
     var path;
 
-    cloud = new Tool();
+    tool.minDistance = 10;
+    tool.maxDistance = 45;
 
-    cloud.onMouseDown = function(event) {
+    
+    tool.onMouseDown = function(event) {
         path = new Path();
-        var color = randomColor();
-        path.strokeColor = new RgbColor(color.red, color.green, color.blue, color.alpha);
+        path.strokeColor = 'white';
         path.add(event.point);
     }
+    tool.onMouseDrag = function(event) {
+        path.add(event.point)
 
-    cloud.onMouseDrag = function(event){
-        path.arcTo(event.point);
+        var step = event.delta;
+        step.angle += 90;
+
+        var top = event.middlePoint + step;
+        var bottom = event.middlePoint - step;
+
+        var line = new Path();
+        line.strokeColor = 'white';
+        line.add(top);
+        line.add(bottom);
     }
-
-
-    function randomColor() {
-
-        return {
-            red: 0,
-            green: Math.random(),
-            blue: Math.random(),
-            alpha: ( Math.random() * 0.25 ) + 0.05
-        };
-    }
-
-//    circleTump.maxDistance = 50;
- //   circleTump.minDistance = 20;
-
-    circleTump = new Tool();
-    circleTump.onMouseDrag = function(event) {
-        var circle = new Path.Circle({
-            center: event.middlePoint,
-            radius: event.delta.length / 2
-
-        });
-        var color = randomColor();
-
-        circle.fillColor = new RgbColor(color.red, color.green, color.blue, color.alpha);
-
-        var sound = new Howl({
-            urls: ['/sounds/Game-Break.mp3'],
-            loop: true
-        }).play();
-    }
-
-
 }
-
