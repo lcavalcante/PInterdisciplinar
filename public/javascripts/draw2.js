@@ -7,7 +7,7 @@ window.onload = function() {
         volume: 0.5,
         loop: true,
 
-    }).play();
+    })  ;
     var x = 0;
     var corrgb;
     $('.color-box').colpick({
@@ -32,12 +32,19 @@ window.onload = function() {
     tool3 = new Tool();
     var path;
     tool1.minDistance = 30;
-    tool1.maxDistance = 45;
+    tool1.maxDistance = 60;
+    
+    tool2.maxDistance = 60;
     tool2.fixedDistance = 20;
-    tool3.maxDistance = 50;
-    tool3.minDistance = 20;
+    tool3.maxDistance = 90;
+    //tool3.minDistance = 20;
     var count = 0;
     var piano = 0;
+    var count1 = 0;
+    var count2 = 0;
+    var count3 = 0;
+
+    var a, b;
 
    
     
@@ -53,6 +60,8 @@ window.onload = function() {
         // you clicked:
         path.add(event.point);
         count++;
+
+        a = event.middlePoint.x;
     }
 
     function onMouseDrag(event) {
@@ -76,7 +85,8 @@ window.onload = function() {
         //path.add(bottom);
         path.insert(0, bottom);
         path.smooth;
-
+        console.log(event.middlePoint);
+       
         
 
         
@@ -104,6 +114,8 @@ window.onload = function() {
         path.insert(0, bottom);
         path.smooth;
 
+   
+
     }
 
     function onMouseDrag3(event){
@@ -115,6 +127,26 @@ window.onload = function() {
         var color = '#'+corrgb;
 
         circle.fillColor = '#'+corrgb;
+        console.log("ashdgadh ->" + event.delta.length /2);
+
+        if((event.delta.length /2 > 43) && ( count1 == 0)){
+            var sound = new Howl({
+                        urls: ['public/sounds/tribal_drum_rhythm.mp3'],
+                        volume: 1.0,
+                        loop: true
+                        
+                    }).play();
+            count1++;
+        }
+        else {
+
+        var sound = new Howl({
+                        urls: ['public/sounds/Bass 1.mp3'],
+                        volume: 0.1,
+                        loop: false
+                        
+                    }).play();
+        }
    
     }
 
@@ -127,35 +159,42 @@ window.onload = function() {
         path.smooth();
         count++;
 
-            if(count > 1){
-                if(event.middlePoint.x < 500) {
-                    var sound = new Howl({
-                        urls: ['public/sounds/musical_piano_chord_e_seventh_ninth.mp3'],
+        console.log("a->" + a);
+        console.log("b->" + b);
+        b = event.middlePoint.x;
+
+        if(((a-b)  > 400 || (b-a) > 400) && count2 == 0){
+            var sound = new Howl({
+                        urls: ['public/sounds/musical_chopper_chord_progression_loop.mp3'],
                         volume: 0.5,
                         loop: true
                         
                     }).play();
-                    count = 0;
-                    console.log(sound.pos3d());
-                }
+            count2++;
 
-                else if(event.middlePoint.x > 500) {
-                    var sound = new Howl({
-                        urls: ['public/sounds/musical_piano_chord_g_major_11th.mp3'],
+
+        }
+
+        else {
+            var sound = new Howl({
+                        urls: ['public/sounds/musical_xylophone_run_slide.mp3'],
                         volume: 0.5,
-                        loop: true,
-                        pos3d: 1000
+                        loop: true
+                        
                     }).play();
-                    count = 0;
-                }
-            else{
 
-            }
+            sound.fadeIn(1, 1000);
+           
+
+        }
+
+
+
             
         }
         
 
-    }
+    
 
         function onMouseUpG(event){
         path.add(event.point);
@@ -164,34 +203,51 @@ window.onload = function() {
         path.smooth();
         count++;
 
-            if(event.middlePoint.x < 500) {
-                    var sound = new Howl({
-                        urls: ['public/sounds/musical_electric_guitar_dry_bb_sus4.mp3'],
-                        volume: 0.5,
-                        loop: true,
-                        pos3d: 1000
+        b = event.middlePoint.x;
+
+        
+
+        if(((a-b)  > 400 || (b-a) > 400) && (count3 == 0)){
+
+            var sound = new Howl({
+                        urls: ['public/sounds/130_glockenspiel_1.mp3'],
+                        volume: 0.1,
+                        loop: true
+                        
                     }).play();
-                    count = 0;
+            count3++;
+
         }
-        else if(event.middlePoint.x > 500) {
+
+        else {
+
+             if(event.middlePoint.x < 500) {
                     var sound = new Howl({
-                        urls: ['public/sounds/musical_electric_guitar_dry_bb_sus4.mp3'],
-                        volume: 0.5,
+                        urls: ['public/sounds/Voz 1.mp3'],
+                        volume: 1.0,
                         loop: false,
-                        pos3d: 1000
                     }).play();
+                    sound.fadeIn(1, 200);
                     count = 0;
         }
-        else{
-                var sound = new Howl({
-                    urls: ['public/sounds/electric_piano_riff_2.mp3'],
-                    loop: false,
-                    pos3d: [event.middlePoint.x /1000, event.middlePoint.y, 0]
+        else if(event.middlePoint.x > 700) {
+                    var sound = new Howl({
+                        urls: ['public/sounds/Voz 1_2.mp3'],
+                        volume: 1.0,
+                        loop: false,
+
                     }).play();
-                count = 0;
+                    count = 0;
+                    sound.fadeIn(1, 200);
+
         }
+
+        }
+
+        
+
             
-        }
+    }
         
 
     
